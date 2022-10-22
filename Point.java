@@ -19,6 +19,17 @@ public class Point {
     public void setY(int y){
         this.y=y;
     }
+    public Point getPoint(){
+        Point p = new Point(getX(), getY());
+        return p;
+    }
+    public boolean areTheSame (Point p){
+        if(x == p.getX() && y == p.getY()){
+            return true;
+        }
+        else 
+        return false;
+    } 
     //public void setPoint(Point p){
     //    this = p;
     //}

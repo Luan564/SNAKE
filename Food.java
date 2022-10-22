@@ -18,14 +18,14 @@ public class Food{
     public Point getPoint(){
         return point;
     }
-    private void randomNewFood(){
-        double x = Math.random()*Config.SIZE_X_SEG;
+    void randomNewFood(){
+    double x = Math.random()*Config.SIZE_X_SEG;
         double y = Math.random()*Config.SIZE_Y_SEG;
         point.setX((int)x);
         point.setY((int)y);
     }
     public void drawFood(Graphics g){
-        randomNewFood();
+ //       randomNewFood();
         g.setColor(color);
         g.fillOval(point.getX()*Config.SIZE_SEG, point.getY()*Config.SIZE_SEG, size, size);
 
