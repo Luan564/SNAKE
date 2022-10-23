@@ -8,6 +8,8 @@ import java.util.ArrayList;
 
 import javax.swing.Timer;
 import javax.swing.WindowConstants;
+import javax.swing.plaf.ColorChooserUI;
+import javax.swing.plaf.ColorUIResource;
 import javax.swing.plaf.DimensionUIResource;
 
 
@@ -28,7 +30,7 @@ public class Board extends JPanel implements ActionListener, KeyListener{
         Timer t = new Timer(80, this);{
         t.start();
         }
-        setPreferredSize(new DimensionUIResource(Config.SIZE_WIN_W, Config.SIZE_WIN_H));
+        setPreferredSize(new DimensionUIResource(Config.SIZE_WIN_W, Config.SIZE_TAB+Config.SIZE_WIN_H));
         setBackground(Color.GRAY);
 
         JFrame window = new JFrame("SNAKE");
@@ -77,6 +79,7 @@ public class Board extends JPanel implements ActionListener, KeyListener{
         Config.SIZE_SEG); 
     
         //Draw lines
+
         for(int i = 0; i<Config.SIZE_WIN_W;){
             i += Config.SIZE_SEG;{
                 g.setColor(Color.black);
@@ -92,6 +95,13 @@ public class Board extends JPanel implements ActionListener, KeyListener{
 
         //Draw food
         food.drawFood(g);
+
+        //Draw tab
+        g.setColor(new ColorUIResource(110, 201, 56));
+        g.fillRect(0, 500, 600, 100);
+        g.setColor(Color.BLACK);
+        g.drawString("Puntos: "+PTS, 100, 550);
+        g.drawString("Vidas: "+VIDAS, 400, 550);
        
     }
 
@@ -138,7 +148,7 @@ public class Board extends JPanel implements ActionListener, KeyListener{
         if(body.get(Config.HEAD).getX()==(body.get(i).getX()) &&
            body.get(Config.HEAD).getY()==(body.get(i).getY())   ){
             VIDAS--;
-            System.out.println(VIDAS+ " Vidas Restantes");
+            //System.out.println(VIDAS+ " Vidas Restantes");
             snake = new Snake();
             body = snake.getBody();
             if(VIDAS == 0){
@@ -153,7 +163,7 @@ public class Board extends JPanel implements ActionListener, KeyListener{
             body.add(new Point(food.getPoint().getX(),food.getPoint().getY()));
             food.randomNewFood();
             PTS=PTS + 10;   //Falta mostrarlo en el Frame
-            System.out.println(PTS);
+            //System.out.println(PTS);
         }
 
 
